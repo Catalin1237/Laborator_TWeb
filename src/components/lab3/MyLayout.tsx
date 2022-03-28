@@ -1,5 +1,7 @@
 import { Layout, Menu, Form, Input, Button, notification } from 'antd';
 import { Card } from 'antd';
+import { Form1 } from '../lab4/Form1';
+import { Form2 } from '../lab4/Form2';
 import './layoutStyle.css';
 
 const { Header, Content, Footer } = Layout;
@@ -115,19 +117,16 @@ export const MyLayout = () => {
                 <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
                     {new Array(4).fill(null).map((_, index) => {
                     const key = index + 1;
-                    return <Menu.Item key={key}>{`nav ${key}`}</Menu.Item>;
+                    return <Menu.Item key={key}>{`Menu ${key}`}</Menu.Item>;
                     })}
                 </Menu>
             </Header>
 
             <main>
                 <Content style={{ padding: '0 50px' }}>
-                    {/* form */}
-                    <MyForm />
+                    {/* <MyForm />
                     
                     <div className="site-layout-content grid-3">                   
-
-                        {/* cards */}
                         {
                             cardInfo.map((el, index) => {
                                 return(
@@ -136,7 +135,14 @@ export const MyLayout = () => {
                                 )
                             })
                         }
-                    </div>
+                    </div> */}
+
+                    <h3>Prima forma</h3>
+                    <Form1 />
+
+                    <h3>A doua forma</h3>
+                    <Form2 />
+
                 </Content>
             </main>
 
