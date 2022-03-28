@@ -1,7 +1,7 @@
 import { Layout, Menu, Form, Input, Button, notification } from 'antd';
 import { Card } from 'antd';
-import { Form1 } from '../lab4/Form1';
-import { Form2 } from '../lab4/Form2';
+import { useState } from 'react';
+import {  FormHero } from '../lab4/Form1';
 import './layoutStyle.css';
 
 const { Header, Content, Footer } = Layout;
@@ -55,16 +55,29 @@ const MyForm = () => {
         notification.open({
           message: 'Deschide consola pe F12.',
         });
-        console.log('Success:', values);
     };
+
+    const [titlu, setTitlu] = useState("");
+    const [text, setText] = useState("");
+    const [nrTelefon, setnrTelefon] = useState("");
+
+    const submitCardInfo = () => {
+        const info ={
+            "1. Titlu": titlu,
+            "2. Text: ": text,
+            "3. Nr de telefon": nrTelefon
+        };
+
+        console.log(info)
+    }
 
     return(
         <Form
             name='basic'
             labelCol={{ span: 9 }}
             wrapperCol={{ span: 5}}
-            onFinish={onFinish}
             autoComplete="off"
+            onFinish={ onFinish }
         >
 
             <Form.Item
@@ -74,7 +87,9 @@ const MyForm = () => {
                     { required: true, message: 'Introdu un titlu!!!'}
                 ]}
             >
-                <Input />
+                <Input 
+                    onChange={ (e) => {setTitlu(e.target.value);}}
+                />
             </Form.Item>
 
             <Form.Item
@@ -84,7 +99,9 @@ const MyForm = () => {
                     { required: true, message: 'Introdu un text!!!'}
                 ]}
             >
-                <Input />
+                <Input 
+                    onChange={ (e) => {setText(e.target.value);}}
+                />
             </Form.Item>
 
             <Form.Item
@@ -94,11 +111,19 @@ const MyForm = () => {
                     { required: true, message: 'Introdu un text!!!'}
                 ]}
             >
-                <Input type={ 'number' } />
+                <Input 
+                type={ 'number' } 
+                onChange={ (e) => {setnrTelefon(e.target.value);}}
+                />
             </Form.Item>
 
             <Form.Item wrapperCol={{ offset: 8, span: 7}}>
-                <Button type='primary' htmlType='submit' ghost>
+                <Button 
+                type='primary' 
+                htmlType='submit' 
+                onClick={ submitCardInfo }
+                ghost
+                >
                     Introdu
                 </Button>
 
@@ -107,6 +132,16 @@ const MyForm = () => {
         </Form>
     )
 }
+
+const infoHero = [
+    {
+        name: "Peter",
+        surname: "Parker",
+        hName: "Spiderman",
+        power: "Crawling",
+        add: "Queens"
+    },  
+]
 
 export const MyLayout = () => {
 
@@ -124,7 +159,7 @@ export const MyLayout = () => {
 
             <main>
                 <Content style={{ padding: '0 50px' }}>
-                    {/* <MyForm />
+                    <MyForm />
                     
                     <div className="site-layout-content grid-3">                   
                         {
@@ -135,13 +170,28 @@ export const MyLayout = () => {
                                 )
                             })
                         }
-                    </div> */}
+                    </div>
 
-                    <h3>Prima forma</h3>
-                    <Form1 />
+                    <br />
 
-                    <h3>A doua forma</h3>
-                    <Form2 />
+                    <h3>Superhero FORM</h3>
+                    <FormHero  hero={ infoHero }/>
+
+                    {/* Info hero */}
+                    {
+                        infoHero.map((e: any) => {
+                            return(
+                                <>
+                                    Name: { e.name } <br />
+                                    Surname: { e.surname } <br />
+                                    Hero name: { e.hName } <br />
+                                    Power: { e.power } <br />
+                                    Address: { e.add } <br />
+
+                                </>
+                            );
+                        })
+                    }
 
                 </Content>
             </main>
