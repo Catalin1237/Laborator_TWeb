@@ -1,55 +1,5 @@
 import { Form, Input, Button, notification } from 'antd';
 import { useState } from 'react';
-import MainInterface from '../interfaces/MainInterface';
-
-interface ShowHeroProp extends MainInterface {
-    myHero: {
-        superHeroName: string;
-        supHeroPower: string;
-        address: string;
-        age: string
-    };
-}
-
-export const ShowHero = (props: ShowHeroProp) => {
-
-    return (
-        <>
-            <table>
-
-                <tr>
-                    <th>Name</th>
-                    <th>Surname</th>
-                    <th>Super Hero Name</th>
-                    <th>Super Hero Power</th>
-                    <th>Address</th>
-                    <th>Age</th>
-                </tr>
-
-                <tr>
-
-                    <td>{props.mainInt.name}</td>
-                    <td>{props.mainInt.surname}</td>
-                    <td>{props.myHero.superHeroName}</td>
-                    <td>{props.myHero.supHeroPower}</td>
-                    <td>{props.myHero.address}</td>
-                    <td>{props.myHero.age}</td>
-
-                </tr>
-
-            </table>
-        </>
-    );
-}
-
-export let infoHero = {
-    name: "Peter",
-    surname: "Parker",
-    superHeroName: "Spiderman",
-    supHeroPower: "Spider power",
-    address: "Queens",
-    age: "16",
-}
 
 export const FormHero = () => {
 
@@ -64,21 +14,21 @@ export const FormHero = () => {
     const [superHeroName, setSuperHeroName] = useState("");
     const [supHeroPower, setSupHeroPower] = useState("");
     const [address, setAddress] = useState("");
-    const [age, setAge] = useState("0");
+    const [age, setAge] = useState("");
 
 
     const submitHero = () => {
-        infoHero = {
-            name: name,
-            surname: surname,
-            superHeroName: superHeroName,
-            supHeroPower: supHeroPower,
-            address: address,
-            age: age
-        }
-    }
+        const info = {
+            "1. Name: ": name,
+            "2. Surname: ": surname,
+            "3. Hero Name: ": superHeroName,
+            "4. Hero Power: ": supHeroPower,
+            "5. Address: ": address,
+            "6. Age: ": age
+        };
 
-    
+        console.log(info)
+    }
 
     return (
         <>
@@ -87,7 +37,7 @@ export const FormHero = () => {
                 labelCol={{ span: 9 }}
                 wrapperCol={{ span: 5 }}
                 autoComplete="off"
-                onFinish={ onFinish }
+                onFinish={ onFinish}
             >
 
                 <Form.Item

@@ -2,7 +2,7 @@ import { Layout, Menu, Form, Input, Button, notification } from 'antd';
 import { Card } from 'antd';
 import { useState } from 'react';
 import MainInterface from '../interfaces/MainInterface';
-import { FormHero, infoHero, ShowHero } from './FormHero';
+import { FormHero } from './FormHero';
 import './layoutStyle.css';
 
 const { Header, Content, Footer } = Layout;
@@ -34,27 +34,27 @@ const cardInfo = [
     },
 ];
 
-const MyCard = ({ title, description, phoneNumber }: { title: string, description: string, phoneNumber: number }) => {
+const MyCard = ({title, description, phoneNumber} : {title: string, description: string, phoneNumber: number}) => {
 
-    return (
-        <Card
-            title={title}
-            bordered={true}
-            hoverable={true}
+    return(
+        <Card 
+            title={ title }  
+            bordered={ true } 
+            hoverable={ true }
             size='small'
         >
-            <b><i>Descriere</i>:</b> <br />{description}
+            <b><i>Descriere</i>:</b> <br />{ description }
             <br /> <br />
-            <b><i>Telefon:</i></b> <br />{phoneNumber}
+            <b><i>Telefon:</i></b> <br />{ phoneNumber }
         </Card>
     )
 }
 
 const MyForm = () => {
 
-    const onFinish = (values: any) => {
+    const onFinish = () => {
         notification.open({
-            message: 'Deschide consola pe F12.',
+          message: 'Deschide consola pe F12.',
         });
     };
 
@@ -63,7 +63,7 @@ const MyForm = () => {
     const [nrTelefon, setnrTelefon] = useState("");
 
     const submitCardInfo = () => {
-        const info = {
+        const info ={
             "1. Titlu": titlu,
             "2. Text: ": text,
             "3. Nr de telefon": nrTelefon
@@ -72,24 +72,24 @@ const MyForm = () => {
         console.log(info)
     }
 
-    return (
+    return(
         <Form
             name='basic'
             labelCol={{ span: 9 }}
-            wrapperCol={{ span: 5 }}
+            wrapperCol={{ span: 5}}
             autoComplete="off"
-            onFinish={onFinish}
+            onFinish={ onFinish }
         >
 
             <Form.Item
                 label="Titlul:"
                 name="titlu"
                 rules={[
-                    { required: true, message: 'Introdu un titlu!!!' }
+                    { required: true, message: 'Introdu un titlu!!!'}
                 ]}
             >
-                <Input
-                    onChange={(e) => { setTitlu(e.target.value); }}
+                <Input 
+                    onChange={ (e) => {setTitlu(e.target.value);}}
                 />
             </Form.Item>
 
@@ -97,11 +97,11 @@ const MyForm = () => {
                 label="Textul din interior:"
                 name="text"
                 rules={[
-                    { required: true, message: 'Introdu un text!!!' }
+                    { required: true, message: 'Introdu un text!!!'}
                 ]}
             >
-                <Input
-                    onChange={(e) => { setText(e.target.value); }}
+                <Input 
+                    onChange={ (e) => {setText(e.target.value);}}
                 />
             </Form.Item>
 
@@ -109,21 +109,21 @@ const MyForm = () => {
                 label="Numarul de telefon:"
                 name="nrTelefon"
                 rules={[
-                    { required: true, message: 'Introdu un text!!!' }
+                    { required: true, message: 'Introdu un text!!!'}
                 ]}
             >
-                <Input
-                    type={'number'}
-                    onChange={(e) => { setnrTelefon(e.target.value); }}
+                <Input 
+                type={ 'number' } 
+                onChange={ (e) => {setnrTelefon(e.target.value);}}
                 />
             </Form.Item>
 
-            <Form.Item wrapperCol={{ offset: 8, span: 7 }}>
-                <Button
-                    type='primary'
-                    htmlType='submit'
-                    onClick={submitCardInfo}
-                    ghost
+            <Form.Item wrapperCol={{ offset: 8, span: 7}}>
+                <Button 
+                type='primary' 
+                htmlType='submit' 
+                onClick={ submitCardInfo }
+                ghost
                 >
                     Introdu
                 </Button>
@@ -134,23 +134,67 @@ const MyForm = () => {
     )
 }
 
+interface ShowHeroProp extends MainInterface{
+    myHero: {
+        superHeroName: string;
+        supHeroPower: string;
+        address: string;
+        age: number
+    };
+}
 
+const ShowHero = (props: ShowHeroProp) => {
 
+    return(
+        <>
+            <table>
+
+                <tr>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Super Hero Name</th>
+                    <th>Super Hero Power</th>
+                    <th>Address</th>
+                    <th>Age</th>
+                </tr>
+
+                <tr>
+
+                    <td>{ props.mainInt.name}</td>
+                    <td>{ props.mainInt.surname}</td>
+                    <td>{ props.myHero.superHeroName}</td>
+                    <td>{ props.myHero.supHeroPower}</td>
+                    <td>{ props.myHero.address}</td>
+                    <td>{ props.myHero.age}</td>
+
+                </tr>
+
+            </table>        
+        </>
+    );
+}
 
 
 export const MyLayout = () => {
 
+    const infoHero = {
+        name: "Peter",
+        surname: "Parker",
+        superHeroName: "Spiderman",
+        supHeroPower: "Spider power",
+        address: "Queens",
+        age: 16,
+    }
     
 
-
-    return (
+    return(
         <Layout className="layout">
 
             <Header>
                 <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
                     {new Array(4).fill(null).map((_, index) => {
-                        const key = index + 1;
-                        return <Menu.Item key={key}>{`Menu ${key}`}</Menu.Item>;
+                    const key = index + 1;
+                    return <Menu.Item key={key}>{`Menu ${key}`}</Menu.Item>;
                     })}
                 </Menu>
             </Header>
@@ -161,13 +205,13 @@ export const MyLayout = () => {
                         <FormHero />
                         <MyForm />
                     </div>
-
-                    <div className="site-layout-content grid-3">
+                    
+                    <div className="site-layout-content grid-3">                   
                         {
                             cardInfo.map((el, index) => {
-                                return (
+                                return(
 
-                                    <MyCard key={el.id} title={el.title} description={el.description} phoneNumber={el.phoneNumber} />
+                                    <MyCard key={ el.id } title={ el.title } description={ el.description } phoneNumber={ el.phoneNumber } />
                                 )
                             })
                         }
@@ -176,12 +220,12 @@ export const MyLayout = () => {
                     <br />
 
                     <div>
-                        <ShowHero mainInt={infoHero} myHero={infoHero} />
+                        <ShowHero mainInt={infoHero} myHero={infoHero}  />
                     </div>
                 </Content>
             </main>
 
             <Footer className='footer'>Calestru Catalin, CR-191</Footer>
-        </Layout>
+      </Layout>
     )
 }
