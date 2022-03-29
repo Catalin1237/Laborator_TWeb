@@ -1,14 +1,15 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
 // import { GreetMe } from './components/GreetMe';
-import { MyLayout } from './components/lab3/MyLayout';
+import { MyLayout } from "./components/MyLayout";
 
 function App() {
+
   return (
     <div className="App">
       {/* <GreetMe first='Calestru' last='Catalin' group='CR-191' /> */}
-      <MyLayout/>
+      <MyLayout />
     </div>
   );
 }

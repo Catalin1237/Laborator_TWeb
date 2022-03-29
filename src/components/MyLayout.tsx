@@ -1,7 +1,7 @@
 import { Layout, Menu, Form, Input, Button, notification } from 'antd';
 import { Card } from 'antd';
 import { useState } from 'react';
-import {  FormHero } from '../lab4/Form1';
+import MainInterface from '../interfaces/MainInterface';
 import './layoutStyle.css';
 
 const { Header, Content, Footer } = Layout;
@@ -133,13 +133,33 @@ const MyForm = () => {
     )
 }
 
+interface ShowHeroProp extends MainInterface{
+    superHeroName: string;
+    supHeroPower: string;
+    address: string;
+    age: number;
+    deadAlive: boolean;
+}
+
+const ShowHero = (props: ShowHeroProp) => {
+
+    const {name, surname} = props;
+
+    return(
+        <>
+            
+        </>
+    );
+}
+
 const infoHero = [
     {
         name: "Peter",
         surname: "Parker",
-        hName: "Spiderman",
-        power: "Crawling",
-        add: "Queens"
+        superHeroName: "Spiderman",
+        supeHeroPower: "Spider power",
+        age: 16,
+        deadAlive: true
     },  
 ]
 
@@ -173,26 +193,6 @@ export const MyLayout = () => {
                     </div>
 
                     <br />
-
-                    <h3>Superhero FORM</h3>
-                    <FormHero  hero={ infoHero }/>
-
-                    {/* Info hero */}
-                    {
-                        infoHero.map((e: any) => {
-                            return(
-                                <>
-                                    Name: { e.name } <br />
-                                    Surname: { e.surname } <br />
-                                    Hero name: { e.hName } <br />
-                                    Power: { e.power } <br />
-                                    Address: { e.add } <br />
-
-                                </>
-                            );
-                        })
-                    }
-
                 </Content>
             </main>
 
