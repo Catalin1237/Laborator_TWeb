@@ -1,14 +1,20 @@
 import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
-import { MyLayout } from "./components/MyLayout";
+import { Layout } from "antd";
+import { HeaderLayout } from "./layouts/HeaderLayout";
+import { ContentLayout } from "./layouts/ContentLayout";
+import { Footer } from "antd/lib/layout/layout";
+
 
 function App() {
 
   return (
-    <div className="App">
-      <MyLayout />
-    </div>
+    <>
+      <Layout>
+        <HeaderLayout />
+        <ContentLayout />
+        <Footer style={{ textAlign: 'center' }}>Calestru Catalin, CR-191</Footer>
+      </Layout>
+    </>
   );
 }
 
