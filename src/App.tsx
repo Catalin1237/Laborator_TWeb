@@ -11,4 +11,6 @@ function App() {
   );
 }
 
+// comentariu
+
 export default App;
