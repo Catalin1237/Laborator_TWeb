@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Layout } from "antd";
 import { HeaderLayout } from "./layouts/HeaderLayout";
 import { ContentLayout } from "./layouts/ContentLayout";
 import { Footer } from "antd/lib/layout/layout";
+import { useRootStore } from ".";
 
 
 function App() {
+
+  const rootStore = useRootStore()
+
+    useEffect(() => {
+        rootStore.setInitialStorageContents()
+    }, [])
 
   return (
     <>

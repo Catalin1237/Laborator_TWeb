@@ -1,7 +1,14 @@
+import { List } from 'antd';
 import { Content } from 'antd/lib/layout/layout'
+import { observer } from 'mobx-react-lite';
+import { useEffect } from 'react';
+import { useRootStore } from '..';
 import { CustomForm } from '../Forms/CustomForm';
 import { CustomInterface } from '../interfaces/CustomInterface';
+import { IContentModel } from '../interfaces/MainInt';
+import { Note } from '../Notes/Notes';
 import { CardCustom } from './CardCustom'
+import { CardCustom2 } from './CardCustom2';
 import './layout.css';
 
 const infoCard = [
@@ -50,7 +57,14 @@ const infoInterface = [
     },
 ]
 
-export const ContentLayout = () => {
+export const ContentLayout = observer(() => {
+
+    const { contents, contents_notes } = useRootStore()
+
+    useEffect(() => {
+        console.log('>>contents_notes', contents_notes)
+    }, [ contents_notes ])
+
     return(
         <main>
             <Content style={ { padding: '0 50px' } }>
@@ -68,10 +82,44 @@ export const ContentLayout = () => {
                     }
                 </div>
 
+                <br />
+
                 <div>
                     <CustomInterface specificInfo={infoInterface}/>
+                </div>
+                
+                <br />
+
+                <div>
+                    
+                    <div>
+                        {
+                            contents.map((content: IContentModel) => {
+                                return(
+                                    <CardCustom2 key={ content.id } content={ content } />
+                                )
+                            })
+                        }
+                    </div>
+
+                    <br />
+
+                    <div>
+                        {
+                            contents_notes.map((content: IContentModel) => {
+                                return(
+                                    <List.Item>
+
+                                        <Note key={ content.id } content={ content } />
+
+                                    </List.Item>
+                                )
+                            })
+                        }
+                    </div>
+
                 </div>
             </Content>
         </main>
     )
-}
+})
