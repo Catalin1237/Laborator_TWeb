@@ -5,7 +5,7 @@ import './layout.css';
 
 
 
-export const ContentLayout = observer(() => {
+export const ContentLayout = () => {
     return(
         <main>
             <Content style={ { padding: '0 50px' } }>
@@ -15,4 +15,4 @@ export const ContentLayout = observer(() => {
             </Content>
         </main>
     )
-})
+}

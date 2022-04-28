@@ -5,8 +5,9 @@ import { CardCustom2 } from './CardCustom2';
 import { List } from 'antd';
 import { useRootStore } from '..';
 import { useEffect } from 'react';
+import { observer } from 'mobx-react-lite';
 
-const InsertAndRead = () => {
+export const InsertAndRead = observer(() => {
 
     
     const { contents, contents_notes } = useRootStore()
@@ -52,6 +53,4 @@ const InsertAndRead = () => {
             </main>
         </>
     )
-}
-
-export default InsertAndRead;
+})
