@@ -13,8 +13,22 @@ const LoginForm = () =>{
             passwd
         }
         
+        const localInfo = localStorage.getItem("login");
 
-        console.log(result);
+        if(localInfo){
+            const itemsData = JSON.parse(localInfo);
+            
+            for(let i=0; i<itemsData.length; i++){
+                if(itemsData[i].user == user && itemsData[i].passwd == passwd){
+                    alert("Logarea a fost efectuata cu succes");
+                    break;
+                }
+            }
+            alert("User sau parola e gresita!")
+        }
+
+
+        // console.log();
     }
 
     return(
@@ -31,7 +45,6 @@ const LoginForm = () =>{
                         type="text" 
                         placeholder="user name / email" 
                         autoComplete="false" 
-                        required
                     />
                     
                     <br />
@@ -40,10 +53,10 @@ const LoginForm = () =>{
                     <input 
                         value={ passwd }
                         onChange={ (e) => {setPasswd(e.target.value)}}
-                        type="password" 
+                        // type="password" 
+                        type="text" 
                         placeholder="password" 
                         autoComplete="false" 
-                        required
                     />
 
                     <br />

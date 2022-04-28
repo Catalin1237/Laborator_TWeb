@@ -1,11 +1,11 @@
 import RootStore from "./RootStore";
 
-const storeProvider = RootStore.create({
+ export const storeProvider = RootStore.create({
     contents:[
         {
             id: '1',
             title: 'Title',
-            description: 'Some more text',
+            description: 'aici',
             seen: false,
             notes: '',
         },
@@ -36,4 +36,4 @@ const storeProvider = RootStore.create({
     ]
 })
 
-export default storeProvider;
+
