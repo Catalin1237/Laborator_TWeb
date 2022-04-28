@@ -4,7 +4,7 @@ import { ContentLayout } from './ContentLayout';
 import InfoCard from './InfoCard';
 import { InsertAndRead } from './InsertAndReadLocal';
 import TabelInfo from './TableInfo';
-import Login from './LoginForm';
+import Login from '../Forms/LoginForm';
 import './layout.css';
 
 const { Header } = Layout;
